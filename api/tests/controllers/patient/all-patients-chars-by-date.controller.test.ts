@@ -1,21 +1,21 @@
 import { mock } from 'jest-mock-extended'
 
+import { AllPatientsCharsByDateController, AllPatientsCharsByDateRequest } from '@/controllers/patient'
 import { HttpResponse } from '@/helpers'
-import { AllPatientsByNameLikeController, AllPatientsByNameLikeRequest } from '@/controllers/patient'
 import { IValidator } from '@/validation'
-import { IAllPatientsByNameLikeUsecase } from '@/usecases/patient'
+import { IAllPatientsCharsByDateUsecase } from '@/usecases/patient'
 import { PatientDTO } from '@/dtos'
 
-class AllPatientsByNameLikeControllerStub extends AllPatientsByNameLikeController {
-  async perform (request: AllPatientsByNameLikeRequest): Promise<HttpResponse> {
+class AllPatientsCharsByDateControllerStub extends AllPatientsCharsByDateController {
+  async perform (request: AllPatientsCharsByDateRequest): Promise<HttpResponse> {
     return await super.perform(request)
   }
 }
 
-describe('AllPatientsByNameLikeController', () => {
-  const request: AllPatientsByNameLikeRequest = {
+describe('AllPatientsCharsByDateController', () => {
+  const request: AllPatientsCharsByDateRequest = {
     queryParams: {
-      name: 'any_name'
+      date: 'any_date'
     }
   }
 
@@ -42,12 +42,21 @@ describe('AllPatientsByNameLikeController', () => {
     heigth: '1,80',
     weigth: 80,
     bloodType: 'any_blood_type',
-    color: 'any_color'
+    color: 'any_color',
+    characteristics: [{
+      id: 1,
+      date: new Date(),
+      value: 0.1,
+      characteristicType: {
+        id: 1,
+        name: 'ind_pulm'
+      }
+    }]
   }]
 
-  let sut: AllPatientsByNameLikeControllerStub
+  let sut: AllPatientsCharsByDateControllerStub
   const validator = mock<IValidator>()
-  const usecase = mock<IAllPatientsByNameLikeUsecase>()
+  const usecase = mock<IAllPatientsCharsByDateUsecase>()
 
   beforeAll(() => {
     validator.validate.mockResolvedValue(null)
@@ -55,14 +64,14 @@ describe('AllPatientsByNameLikeController', () => {
   })
 
   beforeEach(() => {
-    sut = new AllPatientsByNameLikeControllerStub(validator, usecase)
+    sut = new AllPatientsCharsByDateControllerStub(validator, usecase)
   })
 
   test('Should call usecase with correct values', async () => {
     await sut.perform(request)
 
     expect(usecase.execute).toHaveBeenCalledTimes(1)
-    expect(usecase.execute).toHaveBeenCalledWith({ name: request.queryParams.name })
+    expect(usecase.execute).toHaveBeenCalledWith({ date: request.queryParams.date })
   })
 
   test('Should return 500 if usecase throws', async () => {
@@ -71,16 +80,16 @@ describe('AllPatientsByNameLikeController', () => {
     const response = await sut.perform(request)
 
     expect(response.statusCode).toBe(500)
-    expect(response.body).toHaveProperty('code', 'PatientsByNameLikeServerError')
-    expect(response.body).toHaveProperty('message', 'Ops! Ocorreu um erro ao buscar os pacientes. Tente novamente mais tarde.')
+    expect(response.body).toHaveProperty('code', 'AllPatientsCharsByDateServerError')
+    expect(response.body).toHaveProperty('message', 'Ops! Ocorreu um erro ao buscar as características dos pacientes. Tente novamente mais tarde.')
   })
 
   test('Should return 200 on success', async () => {
     const response = await sut.perform(request)
 
     expect(response.statusCode).toBe(200)
-    expect(response.body).toHaveProperty('code', 'PatientsByNameLikeSuccess')
-    expect(response.body).toHaveProperty('message', 'Pacientes encontrados com sucesso.')
+    expect(response.body).toHaveProperty('code', 'AllPatientsCharsByDateSucess')
+    expect(response.body).toHaveProperty('message', 'Características dos pacientes consultadas com sucesso.')
     expect(response.body).toHaveProperty('data', usecaseResponse)
   })
 })
