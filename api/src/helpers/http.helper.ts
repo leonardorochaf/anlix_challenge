@@ -1,6 +1,6 @@
 import { serializeError } from 'serialize-error'
 
-import { BadRequestError } from '@/errors'
+import { BadRequestError, NotFoundError } from '@/errors'
 
 export type HttpRequest = {
   pathParams?: any
@@ -44,5 +44,14 @@ export const ok = (params: { code: string, message: string, data?: any }): HttpR
     code: params.code,
     message: params.message,
     data: params.data
+  }
+})
+
+export const notFound = (error: NotFoundError): HttpResponse => ({
+  statusCode: 404,
+  body: {
+    code: error.name,
+    message: error.message,
+    debug: JSON.stringify(serializeError(error))
   }
 })
