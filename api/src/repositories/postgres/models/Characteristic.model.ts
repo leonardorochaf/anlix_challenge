@@ -10,7 +10,7 @@ export class Characteristic {
   @Column({ type: 'date' })
   date!: Date
 
-  @Column()
+  @Column({ type: 'float' })
   value!: number
 
   @ManyToOne(() => Patient, patient => patient.characteristics)

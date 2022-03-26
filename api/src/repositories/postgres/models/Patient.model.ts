@@ -13,13 +13,13 @@ export class Patient {
   @Column({ name: 'idade' })
   age!: number
 
-  @Column()
+  @Column({ unique: true })
   cpf!: string
 
   @Column()
   rg!: string
 
-  @Column({ name: 'data_nasc', type: 'date' })
+  @Column({ name: 'data_nasc' })
   birthday!: string
 
   @Column({ name: 'sexo' })
