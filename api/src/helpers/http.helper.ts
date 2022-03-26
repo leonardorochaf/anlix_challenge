@@ -37,3 +37,12 @@ export const serverError = (params: { code: string, message: string, error: any 
     debug: JSON.stringify(serializeError(params.error))
   }
 })
+
+export const ok = (params: { code: string, message: string, data?: any }): HttpResponse => ({
+  statusCode: 200,
+  body: {
+    code: params.code,
+    message: params.message,
+    data: params.data
+  }
+})
