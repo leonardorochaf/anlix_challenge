@@ -6,13 +6,16 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test:": "jest --passWithNoTests --no-cache --runInBand",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests",
     "test:coverage": "npm test -- --coverage"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Leonardo Rocha",
+    "email": "leonardo.rocha0803@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.4.1",
@@ -25,8 +28,12 @@
     "eslint-plugin-promise": "^5.0.0",
     "husky": "^4.3.8",
     "jest": "^27.5.1",
+    "jest-mock-extended": "^2.0.4",
     "lint-staged": "^12.3.7",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "serialize-error": "^8.1.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "*.ts": [
     "eslint . --fix --no-error-on-unmatched-pattern",
-    "nom run test:staged"
+    "npm run test:staged"
   ]
 }
