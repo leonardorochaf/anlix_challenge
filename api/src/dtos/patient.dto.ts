@@ -14,13 +14,13 @@ export type PatientDTO = {
   password: string
   cep: string
   address: string
-  number: string
+  number: number
   district: string
   city: string
   state: string
   phone: string
   cellphone: string
-  heigth: number
+  heigth: string
   weigth: number
   bloodType: string
   color: string
