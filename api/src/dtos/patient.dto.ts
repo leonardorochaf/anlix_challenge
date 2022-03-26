@@ -1,6 +1,7 @@
 import { CharacteristicDTO } from './characteristic.dto'
 
 export type PatientDTO = {
+  id?: number
   name: string
   age: number
   cpf: string

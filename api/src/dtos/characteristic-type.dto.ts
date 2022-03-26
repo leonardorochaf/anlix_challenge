@@ -1,4 +1,4 @@
 export type CharacteristicTypeDTO = {
-  id: number
+  id?: number
   name: string
 }
