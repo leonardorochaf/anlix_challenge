@@ -1,6 +1,6 @@
 import { IsDateString, IsDefined } from 'class-validator'
 
-export class AllPatientsByNameLikeValidationModel {
+export class AllPatientsCharsByDateValidationModel {
   @IsDefined()
   @IsDateString()
   date!: string
