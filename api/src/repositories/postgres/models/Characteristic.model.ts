@@ -7,7 +7,7 @@ export class Characteristic {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamptz' })
   date!: Date
 
   @Column({ type: 'float' })

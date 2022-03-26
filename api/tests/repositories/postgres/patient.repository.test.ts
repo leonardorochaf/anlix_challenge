@@ -48,4 +48,26 @@ describe('Patient Repository', () => {
       expect(patients).toHaveLength(0)
     })
   })
+
+  describe('getAllPatientsCharsByDate', () => {
+    test('Should return a list of patients with its carachteristics by a date filter', async () => {
+      const date = new Date().toISOString().split('T')[0]
+
+      const patients = await sut.getAllPatientsCharsByDate({ date })
+
+      expect(patients).toHaveLength(1)
+      expect(patients[0].characteristics).toHaveLength(1)
+      expect(patients[0]).toMatchObject(patientMock)
+    })
+
+    test('Should return a list of patients with an empty characteristics array if theres none in the passed date', async () => {
+      const date = '2022-03-25'
+
+      const patients = await sut.getAllPatientsCharsByDate({ date })
+
+      expect(patients).toHaveLength(1)
+      expect(patients[0].characteristics).toHaveLength(0)
+      expect(patients[0]).toMatchObject(patientMock)
+    })
+  })
 })
