@@ -3,7 +3,8 @@ module.exports = {
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/**/index.ts',
     '!<rootDir>/src/config/**',
-    '!<rootDir>/src/database/**'
+    '!<rootDir>/src/database/**',
+    '!<rootDir>/src/validation/custom-validation-decorators/**'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
