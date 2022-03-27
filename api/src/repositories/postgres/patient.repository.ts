@@ -59,4 +59,8 @@ export class PatientRepository extends TypeormAbstractRepository implements IPat
       .orderBy({ 'c.date': 'DESC' })
       .getOne()
   }
+
+  async getPatientWithRecentCharByIdAndCharId (data: { patientId: number, charId: number }): Promise<Patient | undefined> {
+    return undefined
+  }
 }

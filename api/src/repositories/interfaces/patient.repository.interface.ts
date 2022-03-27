@@ -10,4 +10,6 @@ export interface IPatientRepository {
   getPatientByIdCharByValueInterval: (data: { patientId: number, minValue: number, maxValue: number }) => Promise<PatientDTO | undefined>
 
   getPatientByIdRecentChars: (data: { patientId: number }) => Promise<PatientDTO | undefined>
+
+  getPatientWithRecentCharByIdAndCharId: (data: { patientId: number, charId: number }) => Promise<PatientDTO | undefined>
 }
