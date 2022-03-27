@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-let script = 'INSERT INTO caracteristicas (date, value, paciente_cpf, caracteristica_tipo_id) VALUES\n'
+let script = 'INSERT INTO caracteristicas (date, value, paciente_cpf, tipo_caracteristica_id) VALUES\n'
 
 const filesPaths = ['./data/ind_card', './data/ind_pulm']
 
@@ -39,8 +39,7 @@ Promise.all(filesPaths.map(filesPath => {
           })
 
           characteristics.forEach(characteristic => {
-            const date = +characteristic.epoc * 1000
-            script += `(${new Date(date)}, ${+characteristic.ind}, '${characteristic.cpf.match(/\d/g).join('')}', ${charTypeId}),\n`
+            script += `(to_timestamp(${characteristic.epoc}), ${+characteristic.ind}, '${characteristic.cpf.match(/\d/g).join('')}', ${charTypeId}),\n`
           })
 
           resolve()
