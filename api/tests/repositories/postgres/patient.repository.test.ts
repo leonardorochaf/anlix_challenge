@@ -135,4 +135,23 @@ describe('Patient Repository', () => {
       expect(patient).toMatchObject(patientMock)
     })
   })
+
+  describe('getPatientByIdRecentChars', () => {
+    const patientId = 1
+
+    test('Should return undefined if no patient with given id is found', async () => {
+      const nonExistantPatientId = 1000
+
+      const patient = await sut.getPatientByIdRecentChars({ patientId: nonExistantPatientId })
+
+      expect(patient).not.toBeDefined()
+    })
+    test('Should return a patient by its id with its carachteristics', async () => {
+      const patient = await sut.getPatientByIdRecentChars({ patientId })
+
+      expect(patient).toBeDefined()
+      expect(patient?.characteristics).toHaveLength(1)
+      expect(patient).toMatchObject(patientMock)
+    })
+  })
 })
