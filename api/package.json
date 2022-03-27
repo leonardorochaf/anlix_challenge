@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --clear --inspect=0.0.0.0:31000 src/server",
+    "dev:docker": "npm run typeorm:migrate && ts-node-dev --respawn --transpile-only --clear --poll --inspect=0.0.0.0:30000 src/server",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
