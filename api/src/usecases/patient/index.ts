@@ -4,3 +4,4 @@ export * from './all-patients-chars-by-date/all-patients-chars-by-date.usecase.i
 export * from './all-patients-chars-by-date/all-patients-chars-by-date.usecase'
 export * from './patient-by-id-recent-chars/patient-by-id-recent-chars.usecase.interface'
 export * from './patient-by-id-recent-chars/patient-by-id-recent-chars.usecase'
+export * from './patient-by-id-recent-char-by-id/patient-by-id-recent-char-by-id.usecase.interface'
