@@ -24,4 +24,24 @@ export class PatientRepository extends TypeormAbstractRepository implements IPat
       .orderBy({ 'c.date': 'DESC' })
       .getMany()
   }
+
+  async getPatientByIdCharByDateInterval (data: { patientId: number, minDate: string, maxDate: string }): Promise<Patient | undefined> {
+    const repository = this.getRepository(Patient)
+
+    return await repository.createQueryBuilder('p')
+      .leftJoinAndMapMany('p.characteristics', Characteristic, 'c', 'c.paciente_cpf = p.cpf AND CAST(c.date AS DATE) BETWEEN :minDate AND :maxDate', { minDate: data.minDate, maxDate: data.maxDate })
+      .leftJoinAndMapOne('c.characteristicType', CharacteristicType, 'ct', 'ct.id = c.tipo_caracteristica_id')
+      .where('p.id = :patientId', { patientId: data.patientId })
+      .orderBy({ 'c.date': 'DESC' })
+      .limit(1)
+      .getOne()
+  }
+
+  async getPatientByIdCharByValueInterval (data: { patientId: number, minValue: number, maxValue: number }): Promise<Patient | undefined> {
+    return undefined
+  }
+
+  async getPatientByIdRecentChars (data: { patientId: number }): Promise<Patient | undefined> {
+    return undefined
+  }
 }

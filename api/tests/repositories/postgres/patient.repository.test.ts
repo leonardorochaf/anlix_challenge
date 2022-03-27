@@ -1,4 +1,5 @@
 import { IBackup } from 'pg-mem'
+import moment from 'moment'
 
 import { PgConnection } from '@/database'
 import { PatientRepository } from '@/repositories/postgres'
@@ -68,6 +69,38 @@ describe('Patient Repository', () => {
       expect(patients).toHaveLength(1)
       expect(patients[0].characteristics).toHaveLength(0)
       expect(patients[0]).toMatchObject(patientMock)
+    })
+  })
+
+  describe('getPatientByIdCharByDateInterval', () => {
+    const patientId = 1
+    const minDate = moment().subtract(1, 'days').toISOString().split('T')[0]
+    const maxDate = new Date().toISOString().split('T')[0]
+
+    test('Should return undefined if no patient with given id is found', async () => {
+      const nonExistantPatientId = 1000
+
+      const patient = await sut.getPatientByIdCharByDateInterval({ patientId: nonExistantPatientId, minDate, maxDate })
+
+      expect(patient).not.toBeDefined()
+    })
+    test('Should return a patient by its id with its carachteristics by a date interval filter', async () => {
+      const patient = await sut.getPatientByIdCharByDateInterval({ patientId, minDate, maxDate })
+
+      expect(patient).toBeDefined()
+      expect(patient?.characteristics).toHaveLength(1)
+      expect(patient).toMatchObject(patientMock)
+    })
+
+    test('Should return a patient by its id with an empty characteristics array if theres none in the date interval', async () => {
+      const minDate = moment().add(20, 'days').toISOString().split('T')[0]
+      const maxDate = moment().add(21, 'days').toISOString().split('T')[0]
+
+      const patient = await sut.getPatientByIdCharByDateInterval({ patientId, minDate, maxDate })
+
+      expect(patient).toBeDefined()
+      expect(patient?.characteristics).toHaveLength(0)
+      expect(patient).toMatchObject(patientMock)
     })
   })
 })
