@@ -62,7 +62,7 @@ describe('PatientByIdRecentChars Usecase', () => {
   const patientRepository = mock<IPatientRepository>()
 
   beforeAll(() => {
-    patientRepository.getPatientByCharByDateInterval.mockResolvedValue(repositoriesResponse)
+    patientRepository.getPatientByIdCharByDateInterval.mockResolvedValue(repositoriesResponse)
     patientRepository.getPatientByIdCharByValueInterval.mockResolvedValue(repositoriesResponse)
     patientRepository.getPatientByIdRecentChars.mockResolvedValue(repositoriesResponse)
   })
@@ -74,8 +74,8 @@ describe('PatientByIdRecentChars Usecase', () => {
   test('Should call Repository.getPatientByCharByDateInterval if minDate/maxDate are defined', async () => {
     await sut.execute(paramsWithDate)
 
-    expect(patientRepository.getPatientByCharByDateInterval).toHaveBeenCalledTimes(1)
-    expect(patientRepository.getPatientByCharByDateInterval).toHaveBeenCalledWith(paramsWithDate)
+    expect(patientRepository.getPatientByIdCharByDateInterval).toHaveBeenCalledTimes(1)
+    expect(patientRepository.getPatientByIdCharByDateInterval).toHaveBeenCalledWith(paramsWithDate)
     expect(patientRepository.getPatientByIdCharByValueInterval).toHaveBeenCalledTimes(0)
     expect(patientRepository.getPatientByIdRecentChars).toHaveBeenCalledTimes(0)
   })
@@ -85,7 +85,7 @@ describe('PatientByIdRecentChars Usecase', () => {
 
     expect(patientRepository.getPatientByIdCharByValueInterval).toHaveBeenCalledTimes(1)
     expect(patientRepository.getPatientByIdCharByValueInterval).toHaveBeenCalledWith(paramsWithValue)
-    expect(patientRepository.getPatientByCharByDateInterval).toHaveBeenCalledTimes(0)
+    expect(patientRepository.getPatientByIdCharByDateInterval).toHaveBeenCalledTimes(0)
     expect(patientRepository.getPatientByIdRecentChars).toHaveBeenCalledTimes(0)
   })
 
@@ -94,7 +94,7 @@ describe('PatientByIdRecentChars Usecase', () => {
 
     expect(patientRepository.getPatientByIdRecentChars).toHaveBeenCalledTimes(1)
     expect(patientRepository.getPatientByIdRecentChars).toHaveBeenCalledWith(params)
-    expect(patientRepository.getPatientByCharByDateInterval).toHaveBeenCalledTimes(0)
+    expect(patientRepository.getPatientByIdCharByDateInterval).toHaveBeenCalledTimes(0)
     expect(patientRepository.getPatientByIdCharByValueInterval).toHaveBeenCalledTimes(0)
   })
 

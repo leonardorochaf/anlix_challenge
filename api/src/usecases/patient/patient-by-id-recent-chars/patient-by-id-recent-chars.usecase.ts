@@ -10,7 +10,7 @@ export class PatientByIdRecentCharsUsecase implements IPatientByIdRecentCharsUse
     let patient
 
     if (params.minDate && params.maxDate) {
-      patient = await this.patientRepository.getPatientByCharByDateInterval({ patientId: params.patientId, minDate: params.minDate, maxDate: params.maxDate })
+      patient = await this.patientRepository.getPatientByIdCharByDateInterval({ patientId: params.patientId, minDate: params.minDate, maxDate: params.maxDate })
     } else if (params.minValue && params.maxValue) {
       patient = await this.patientRepository.getPatientByIdCharByValueInterval({ patientId: params.patientId, minValue: params.minValue, maxValue: params.maxValue })
     } else {
