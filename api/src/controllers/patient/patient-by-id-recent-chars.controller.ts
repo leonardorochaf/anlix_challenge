@@ -20,7 +20,7 @@ export class PatientByIdRecentCharsController extends AbstractController {
 
       return ok({
         code: 'PatientByIdRecentCharsSuccess',
-        message: 'Características dos pacientes consultadas com sucesso.',
+        message: 'Características do paciente consultadas com sucesso.',
         data: response
       })
     } catch (error) {

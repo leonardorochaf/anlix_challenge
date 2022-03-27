@@ -1,10 +1,12 @@
 import { Router } from 'express'
 
 import { routerAdapter } from '@/adapters'
-import { allPatientsByNameLikeControllerFactory, allPatientsCharsByDateControllerFactory } from '@/factories/controllers/'
+import { allPatientsByNameLikeControllerFactory, allPatientsCharsByDateControllerFactory, patientByIdRecentCharsControllerFactory } from '@/factories/controllers/'
 
 export default (router: Router): void => {
   router.get('/patients', routerAdapter(allPatientsByNameLikeControllerFactory()))
 
   router.get('/patients/chars', routerAdapter(allPatientsCharsByDateControllerFactory()))
+
+  router.get('/patients/:patientId/chars', routerAdapter(patientByIdRecentCharsControllerFactory()))
 }
