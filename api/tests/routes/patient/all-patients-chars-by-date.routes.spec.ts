@@ -40,7 +40,7 @@ describe('GET /patients/chars', () => {
     expect(body.error).toHaveProperty('message', 'Houve um problema ao processar sua solicitação. Por favor, tente novamente mais tarde.')
   })
 
-  it('Should return 200 with a patient with empty characteristic array', async () => {
+  it('Should return 200 with an empty array', async () => {
     const date = '2022-03-25'
 
     const { status, body } = await request(app)
@@ -50,9 +50,7 @@ describe('GET /patients/chars', () => {
     expect(body).toHaveProperty('code', 'AllPatientsCharsByDateSucess')
     expect(body).toHaveProperty('message', 'Características dos pacientes consultadas com sucesso.')
     expect(body).toHaveProperty('data')
-    expect(body.data).toHaveLength(1)
-    expect(body.data[0]).toHaveProperty('characteristics')
-    expect(body.data[0].characteristics).toHaveLength(0)
+    expect(body.data).toHaveLength(0)
   })
 
   it('Should return 200 with a patient that have characteristics', async () => {

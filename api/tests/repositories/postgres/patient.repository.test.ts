@@ -61,14 +61,12 @@ describe('Patient Repository', () => {
       expect(patients[0]).toMatchObject(patientMock)
     })
 
-    test('Should return a list of patients with an empty characteristics array if theres none in the passed date', async () => {
+    test('Should return an empty array if theres no patient with characteristics from the date passed', async () => {
       const date = '2022-03-25'
 
       const patients = await sut.getAllPatientsCharsByDate({ date })
 
-      expect(patients).toHaveLength(1)
-      expect(patients[0].characteristics).toHaveLength(0)
-      expect(patients[0]).toMatchObject(patientMock)
+      expect(patients).toHaveLength(0)
     })
   })
 

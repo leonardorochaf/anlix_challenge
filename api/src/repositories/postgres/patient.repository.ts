@@ -19,7 +19,7 @@ export class PatientRepository extends TypeormAbstractRepository implements IPat
     const repository = this.getRepository(Patient)
 
     return await repository.createQueryBuilder('p')
-      .leftJoinAndMapMany('p.characteristics', Characteristic, 'c', 'c.paciente_cpf = p.cpf AND CAST(c.date AS DATE) = :date', { date: data.date })
+      .innerJoinAndMapMany('p.characteristics', Characteristic, 'c', 'c.paciente_cpf = p.cpf AND CAST(c.date AS DATE) = :date', { date: data.date })
       .leftJoinAndMapOne('c.characteristicType', CharacteristicType, 'ct', 'ct.id = c.tipo_caracteristica_id')
       .orderBy({ 'c.date': 'DESC' })
       .getMany()
