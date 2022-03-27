@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --clear --inspect=0.0.0.0:31000 src/server",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
@@ -12,7 +13,9 @@
     "test:coverage": "npm test -- --coverage",
     "test:unit": "npm run test -- -c jest-unit.config.js",
     "test:integration": "npm run test -- -c jest-integration.config.js",
-    "generate:sql": "cd scripts && node ./txt-to-sql.js && node ./json-to-sql.js"
+    "generate:sql": "cd scripts && node ./txt-to-sql.js && node ./json-to-sql.js",
+    "typeorm": "tsnd ./node_modules/typeorm/cli.js",
+    "typeorm:migrate": "npm run typeorm -- migration:run"
   },
   "keywords": [],
   "author": {
@@ -41,6 +44,7 @@
     "pg-mem": "^2.3.3",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
   },
   "dependencies": {
