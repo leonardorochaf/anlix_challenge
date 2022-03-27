@@ -1,6 +1,6 @@
 import { IsDefined, IsNumberString } from 'class-validator'
 
-export class AllPatientsByNameLikeValidationModel {
+export class PatientByIdRecentCharByIdValidationModel {
   @IsDefined()
   @IsNumberString()
   patientId!: string

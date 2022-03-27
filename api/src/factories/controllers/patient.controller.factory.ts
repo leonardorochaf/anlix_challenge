@@ -1,8 +1,7 @@
-import { AllPatientsByNameLikeController, AllPatientsCharsByDateController, PatientByIdRecentCharsController } from '@/controllers/patient'
+import { AllPatientsByNameLikeController, AllPatientsCharsByDateController, PatientByIdRecentCharByIdController, PatientByIdRecentCharsController } from '@/controllers/patient'
 import { Validator } from '@/validation'
-import { AllPatientsByNameLikeValidationModel, AllPatientsCharsByDateValidationModel } from '@/validation/validation-models'
-import { PatientByIdRecentCharsValidationModel } from '@/validation/validation-models/patient-by-id-recent-chars.validation.model'
-import { allPatientsByNameLikeUsecaseFactory, allPatientsCharsByDateUsecaseFactory, patientByIdRecentCharsUsecaseFactory } from '../usecases/patient.usecase.factory'
+import { AllPatientsByNameLikeValidationModel, AllPatientsCharsByDateValidationModel, PatientByIdRecentCharByIdValidationModel, PatientByIdRecentCharsValidationModel } from '@/validation/validation-models'
+import { allPatientsByNameLikeUsecaseFactory, allPatientsCharsByDateUsecaseFactory, patientByIdRecentCharByIdUsecaseFactory, patientByIdRecentCharsUsecaseFactory } from '../usecases/patient.usecase.factory'
 
 export const allPatientsByNameLikeControllerFactory = (): AllPatientsByNameLikeController => {
   const validator = new Validator(AllPatientsByNameLikeValidationModel)
@@ -20,4 +19,10 @@ export const patientByIdRecentCharsControllerFactory = (): PatientByIdRecentChar
   const validator = new Validator(PatientByIdRecentCharsValidationModel)
   const usecase = patientByIdRecentCharsUsecaseFactory()
   return new PatientByIdRecentCharsController(validator, usecase)
+}
+
+export const patientByIdRecentCharByIdControllerFactory = (): PatientByIdRecentCharByIdController => {
+  const validator = new Validator(PatientByIdRecentCharByIdValidationModel)
+  const usecase = patientByIdRecentCharByIdUsecaseFactory()
+  return new PatientByIdRecentCharByIdController(validator, usecase)
 }

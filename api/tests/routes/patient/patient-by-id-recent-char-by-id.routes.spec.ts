@@ -7,11 +7,12 @@ import { Characteristic, CharacteristicType, Patient } from '@/repositories/post
 import { constants } from '@/utils'
 import { app } from '@/app'
 
-describe('GET /patients/:patientId', () => {
+describe('GET /patients/:patientId/chars/:charIs', () => {
   let connection: PgConnection
   let backup: IBackup
 
   const patientId = 1
+  const charId = 1
 
   beforeAll(async () => {
     connection = PgConnection.getInstance()
@@ -36,7 +37,7 @@ describe('GET /patients/:patientId', () => {
     const nonNumberId = 'abc'
 
     const { status, body } = await request(app)
-      .get(`${constants.apiPrefix}/patients/${nonNumberId}/chars`)
+      .get(`${constants.apiPrefix}/patients/${nonNumberId}/chars/${charId}`)
 
     expect(status).toBe(400)
     expect(body).toHaveProperty('error')
@@ -48,7 +49,7 @@ describe('GET /patients/:patientId', () => {
     const nonExistantPatientId = 1000
 
     const { status, body } = await request(app)
-      .get(`${constants.apiPrefix}/patients/${nonExistantPatientId}/chars`)
+      .get(`${constants.apiPrefix}/patients/${nonExistantPatientId}/chars/${charId}`)
 
     expect(status).toBe(404)
     expect(body).toHaveProperty('error')
@@ -58,11 +59,11 @@ describe('GET /patients/:patientId', () => {
 
   it('Should return 200 with found user', async () => {
     const { status, body } = await request(app)
-      .get(`${constants.apiPrefix}/patients/${patientId}/chars`)
+      .get(`${constants.apiPrefix}/patients/${patientId}/chars/${charId}`)
 
     expect(status).toBe(200)
-    expect(body).toHaveProperty('code', 'PatientByIdRecentCharsSuccess')
-    expect(body).toHaveProperty('message', 'Características do paciente consultadas com sucesso.')
+    expect(body).toHaveProperty('code', 'PatientByIdRecentCharByIdSuccess')
+    expect(body).toHaveProperty('message', 'Característica do paciente consultada com sucesso.')
     expect(body).toHaveProperty('data')
     expect(body.data).toMatchObject(patientMock)
   })

@@ -1,4 +1,4 @@
-import { AllPatientsByNameLikeUsecase, AllPatientsCharsByDateUsecase, IAllPatientsByNameLikeUsecase, IAllPatientsCharsByDateUsecase, IPatientByIdRecentCharsUsecase, PatientByIdRecentCharsUsecase } from '@/usecases/patient'
+import { AllPatientsByNameLikeUsecase, AllPatientsCharsByDateUsecase, IAllPatientsByNameLikeUsecase, IAllPatientsCharsByDateUsecase, IPatientByIdRecentCharByIdUsecase, IPatientByIdRecentCharsUsecase, PatientByIdRecentCharByIdUsecase, PatientByIdRecentCharsUsecase } from '@/usecases/patient'
 import { patientRepositoryFactory } from '../repositories/repositories.factory'
 
 export const allPatientsByNameLikeUsecaseFactory = (): IAllPatientsByNameLikeUsecase => {
@@ -14,4 +14,9 @@ export const allPatientsCharsByDateUsecaseFactory = (): IAllPatientsCharsByDateU
 export const patientByIdRecentCharsUsecaseFactory = (): IPatientByIdRecentCharsUsecase => {
   const patientRepository = patientRepositoryFactory()
   return new PatientByIdRecentCharsUsecase(patientRepository)
+}
+
+export const patientByIdRecentCharByIdUsecaseFactory = (): IPatientByIdRecentCharByIdUsecase => {
+  const patientRepository = patientRepositoryFactory()
+  return new PatientByIdRecentCharByIdUsecase(patientRepository)
 }
