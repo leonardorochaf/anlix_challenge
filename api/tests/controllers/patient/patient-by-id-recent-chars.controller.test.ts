@@ -111,7 +111,7 @@ describe('PatientByIdRecentCharsController', () => {
 
     expect(response.statusCode).toBe(200)
     expect(response.body).toHaveProperty('code', 'PatientByIdRecentCharsSuccess')
-    expect(response.body).toHaveProperty('message', 'Características dos pacientes consultadas com sucesso.')
+    expect(response.body).toHaveProperty('message', 'Características do paciente consultadas com sucesso.')
     expect(response.body).toHaveProperty('data', usecaseResponse)
   })
 })
