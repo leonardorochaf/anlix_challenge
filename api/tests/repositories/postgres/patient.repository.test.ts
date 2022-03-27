@@ -146,11 +146,42 @@ describe('Patient Repository', () => {
 
       expect(patient).not.toBeDefined()
     })
+
     test('Should return a patient by its id with its carachteristics', async () => {
       const patient = await sut.getPatientByIdRecentChars({ patientId })
 
       expect(patient).toBeDefined()
       expect(patient?.characteristics).toHaveLength(1)
+      expect(patient).toMatchObject(patientMock)
+    })
+  })
+
+  describe('getPatientWithRecentCharByIdAndCharId', () => {
+    const patientId = 1
+    const charId = 1
+
+    test('Should return undefined if no patient with given id is found', async () => {
+      const nonExistantPatientId = 1000
+
+      const patient = await sut.getPatientWithRecentCharByIdAndCharId({ patientId: nonExistantPatientId, charId })
+
+      expect(patient).not.toBeDefined()
+    })
+
+    test('Should return undefined if no patient with given characteristic id is found', async () => {
+      const nonExistantCharId = 1000
+
+      const patient = await sut.getPatientWithRecentCharByIdAndCharId({ patientId, charId: nonExistantCharId })
+
+      expect(patient).not.toBeDefined()
+    })
+
+    test('Should return a patient by id and charactistics id', async () => {
+      const patient = await sut.getPatientWithRecentCharByIdAndCharId({ patientId, charId })
+
+      expect(patient).toBeDefined()
+      expect(patient?.characteristics).toHaveLength(1)
+      expect(patient?.characteristics[0].characteristicType.id).toBe(1)
       expect(patient).toMatchObject(patientMock)
     })
   })

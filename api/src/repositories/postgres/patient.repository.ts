@@ -61,6 +61,15 @@ export class PatientRepository extends TypeormAbstractRepository implements IPat
   }
 
   async getPatientWithRecentCharByIdAndCharId (data: { patientId: number, charId: number }): Promise<Patient | undefined> {
-    return undefined
+    const repository = this.getRepository(Patient)
+
+    return await repository.createQueryBuilder('p')
+      .leftJoinAndMapMany('p.characteristics', Characteristic, 'c', 'c.paciente_cpf = p.cpf')
+      .leftJoinAndMapOne('c.characteristicType', CharacteristicType, 'ct', 'ct.id = c.tipo_caracteristica_id')
+      .where('p.id = :patientId', { patientId: data.patientId })
+      .andWhere('ct.id = :charId', { charId: data.charId })
+      .orderBy({ 'c.date': 'DESC' })
+      .limit(1)
+      .getOne()
   }
 }
