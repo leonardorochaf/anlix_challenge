@@ -3,8 +3,8 @@ import { allCharacteristicTypes } from './characteristic-type.paths.swagger'
 
 export default {
   '/patients': patientByNameLikePath,
-  '/patients/characs': allPatientsCharsByDatePath,
-  '/patients/{patientId}/characs': PatientByIdRecentCharsPath,
-  '/patients/{patientId}/characs/{characId}': PatientByIdRecentCharPath,
-  '/charactypes': allCharacteristicTypes
+  '/patients/chars': allPatientsCharsByDatePath,
+  '/patients/{patientId}/chars': PatientByIdRecentCharsPath,
+  '/patients/{patientId}/chars/{charId}': PatientByIdRecentCharPath,
+  '/char-types': allCharacteristicTypes
 }

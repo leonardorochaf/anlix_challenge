@@ -204,7 +204,7 @@ export const PatientByIdRecentCharsPath = {
   get: {
     tags: ['Paciente'],
     summary: 'Retorna um paciente pelo id e todas suas caracteristicas ordenadas pela mais recente.',
-    description: 'Pode ser filtrado por um intervalo de datas e por um intervalo de valores. Quando ambos os filtros forem aplicados o de data terá precedência.',
+    description: 'Pode ser filtrado por um intervalo de datas e por um intervalo de valores. Quando filtrado retorna apenas a característica mais recente. Quando ambos os filtros forem aplicados o de data terá precedência.',
     parameters: [
       {
         name: 'patientId',
@@ -219,7 +219,7 @@ export const PatientByIdRecentCharsPath = {
       {
         name: 'minDate',
         description: 'Menor data do intervalo. Obrigatório quando maxDate é passado.',
-        in: 'path',
+        in: 'query',
         required: false,
         schema: {
           type: 'string'
@@ -229,7 +229,7 @@ export const PatientByIdRecentCharsPath = {
       {
         name: 'maxDate',
         description: 'Maior data do intervalo. Obrigatório quando minDate é passado.',
-        in: 'path',
+        in: 'query',
         required: false,
         schema: {
           type: 'string'
@@ -239,20 +239,20 @@ export const PatientByIdRecentCharsPath = {
       {
         name: 'minValue',
         description: 'Menor valor do intervalo. Obrigtório quando maxValue é passado.',
-        in: 'path',
+        in: 'query',
         required: false,
         schema: {
-          type: 'integer'
+          type: 'float'
         },
         example: 0.10
       },
       {
         name: 'maxValue',
         description: 'Maior valor do intervalo. Obrigtório quando minValue é passado.',
-        in: 'path',
+        in: 'query',
         required: false,
         schema: {
-          type: 'integer'
+          type: 'float'
         },
         example: 0.16
       }
@@ -346,7 +346,7 @@ export const PatientByIdRecentCharsPath = {
 export const PatientByIdRecentCharPath = {
   get: {
     tags: ['Paciente'],
-    summary: 'Retorna um paciente pelo id e sua caracteristica mais recente pelo seu id do seu tipo',
+    summary: 'Retorna um paciente pelo id e sua caracteristica mais recente pelo id do seu tipo',
     parameters: [
       {
         name: 'patientId',
@@ -359,7 +359,7 @@ export const PatientByIdRecentCharPath = {
         example: 1
       },
       {
-        name: 'characId',
+        name: 'charId',
         description: 'Id do tipo de característica que deseja buscar',
         in: 'path',
         required: true,
