@@ -1,6 +1,10 @@
 import { Express, Router } from 'express'
 import { readdirSync } from 'fs'
 import { join } from 'path'
+import swaggerUi from 'swagger-ui-express'
+
+import { env } from '@/config/env'
+import { swaggerConfig } from '@/docs'
 
 export const initRoutes = (app: Express): void => {
   const router = Router()
@@ -11,4 +15,8 @@ export const initRoutes = (app: Express): void => {
     })
 
   app.use('/api/v1', router)
+
+  if (env.NODE_ENV !== 'production') {
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
+  }
 }
