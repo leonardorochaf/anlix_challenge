@@ -3,7 +3,7 @@ import { mock } from 'jest-mock-extended'
 import { PatientByIdRecentCharByIdController, PatientByIdRecentCharByIdRequest } from '@/controllers/patient'
 import { PatientDTO } from '@/dtos'
 import { HttpResponse } from '@/helpers'
-import { IPatientByIdRecentCharsUsecase } from '@/usecases/patient'
+import { IPatientByIdRecentCharByIdUsecase } from '@/usecases/patient'
 import { IValidator } from '@/validation'
 import { PatientNotFoundError } from '@/errors'
 
@@ -58,7 +58,7 @@ describe('PatientByIdRecentCharByIdController', () => {
 
   let sut: PatientByIdRecentCharByIdControllerStub
   const validator = mock<IValidator>()
-  const usecase = mock<IPatientByIdRecentCharsUsecase>()
+  const usecase = mock<IPatientByIdRecentCharByIdUsecase>()
 
   beforeAll(() => {
     validator.validate.mockResolvedValue(null)

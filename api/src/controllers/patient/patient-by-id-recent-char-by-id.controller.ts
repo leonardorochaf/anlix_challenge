@@ -1,11 +1,11 @@
 import { PatientNotFoundError } from '@/errors/patient-not-found.error'
 import { HttpResponse, notFound, ok, serverError } from '@/helpers'
-import { PatientByIdRecentCharByIdUsecase } from '@/usecases/patient'
+import { IPatientByIdRecentCharByIdUsecase } from '@/usecases/patient'
 import { IValidator } from '@/validation'
 import { AbstractController } from '@/controllers'
 
 export class PatientByIdRecentCharByIdController extends AbstractController {
-  constructor (protected readonly validator: IValidator, private readonly usecase: PatientByIdRecentCharByIdUsecase) {
+  constructor (protected readonly validator: IValidator, private readonly usecase: IPatientByIdRecentCharByIdUsecase) {
     super(validator)
   }
 
