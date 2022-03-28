@@ -1,4 +1,3 @@
-
 import './config/module-alias'
 
 import { env } from '@/config/env'
