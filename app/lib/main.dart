@@ -6,6 +6,8 @@ import 'package:app/screens/home/home_binding.dart';
 import 'package:app/screens/home/home_screen.dart';
 import 'package:app/screens/search_patients/search_patients_binding.dart';
 import 'package:app/screens/search_patients/search_patients_screen.dart';
+import 'package:app/screens/patient_details/patient_details_binding.dart';
+import 'package:app/screens/patient_details/patient_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
             name: '/search',
             page: () => const SearchPatientsScreen(),
             binding: SearchPatientsBinding()),
+        GetPage(
+            name: '/patient/:patientId',
+            page: () => const PatientDetailsScreen(),
+            binding: PatientDetailsBinding()),
       ],
     );
   }
