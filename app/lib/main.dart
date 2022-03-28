@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 
 import 'package:app/screens/home/home_binding.dart';
 import 'package:app/screens/home/home_screen.dart';
+import 'package:app/screens/search_patients/search_patients_binding.dart';
+import 'package:app/screens/search_patients/search_patients_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +34,10 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
             name: '/', page: () => const HomeScreen(), binding: HomeBinding()),
+        GetPage(
+            name: '/search',
+            page: () => const SearchPatientsScreen(),
+            binding: SearchPatientsBinding()),
       ],
     );
   }
