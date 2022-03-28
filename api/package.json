@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only --clear --inspect=0.0.0.0:31000 src/server",
     "dev:docker": "npm run typeorm:migrate && ts-node-dev --respawn --transpile-only --clear --poll --inspect=0.0.0.0:30000 src/server",
     "lint": "eslint .",
@@ -25,6 +27,7 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "@jest-mock/express": "^1.4.5",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "@types/module-alias": "^2.0.1",
@@ -43,6 +46,7 @@
     "lint-staged": "^12.3.7",
     "moment": "^2.29.1",
     "pg-mem": "^2.3.3",
+    "rimraf": "^3.0.2",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
     "ts-node-dev": "^1.1.8",
@@ -51,6 +55,7 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "cross-env": "^7.0.3",
     "express": "^4.17.3",
     "metadata": "^0.1.0",
     "module-alias": "^2.2.2",
