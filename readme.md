@@ -37,6 +37,15 @@
 1. Para acessar a aplicação frontend certifique-se de estar rodando a aplicação e acesse [localhost:8080](http://localhost:8080)
 2. Dentro da pasta vídeos há um pequeno vídeo mostrando o uso da aplicação.
 
+### OBS
+
+Você pode rodar o frontend também como um aplicativo no celular ios ou android. Para isso precisaria de:
+
+1. Dart e flutter instalados na sua máquina. Testados nas versões: Flutter 2.8.1 e Dart 2.15.1.
+2. Um emulador ou celular. Se escolher rodar com emulador ou celular android é necessário trocar dentro do arquivo `constants.dart` o valor da variável `kApiEndpoint` para o ip local da sua máquina.
+3. Rodar o comando `flutter devices` e pegar o id do device que deseja iniciar a aplicação.
+4. Rodar o comando `flutter run -d $DEVICE_ID`.
+
 ## Documentação da API
 
 Para ver a documentação da api certifique-se que está rodando a aplicação e acesse [localhost:3000/docs](http://localhost:3000/docs)
