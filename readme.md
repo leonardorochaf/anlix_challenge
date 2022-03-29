@@ -30,7 +30,7 @@
 > ## Setup
 
 1. `docker compose up -d` para subir ambas as aplicações.
-2. `docker compose -f docker-compose.api.yml up -d` para sunir apenas a api e o banco de dados.
+2. `docker compose -f docker-compose.api.yml up -d` para subir apenas a api e o banco de dados.
 
 ## Frontend
 
